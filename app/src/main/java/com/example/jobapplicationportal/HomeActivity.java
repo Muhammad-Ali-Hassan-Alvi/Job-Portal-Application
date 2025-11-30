@@ -13,9 +13,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
 
-    // Using 'View' is safer here because in the XML we switched to
-    // MaterialCardView.
-    // View is the parent of CardView, so setOnClickListener works perfectly.
     private View btnAllJob;
     private View btnPostJob;
 
