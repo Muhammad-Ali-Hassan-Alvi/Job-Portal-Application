@@ -1,77 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="5dp"
-    android:elevation="5dp"
-    android:layout_margin="10dp"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:rippleColor="@color/grey_light">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:padding="16dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Job Title"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:maxLines="1"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:padding="10dp"
-            android:textColor="@android:color/black"
-            android:id="@+id/job_title"
-            />
+            android:orientation="horizontal">
+
+            <!-- Placeholder Icon -->
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_launcher_background"
+                android:backgroundTint="@color/grey_light" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/job_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Job Title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Company Name • Remote"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorOnSurfaceVariant" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/job_date"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1 November, 2020"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textAppearance="?android:textAppearanceSmall"
-            android:padding="10dp"
-            android:textColor="@android:color/black"
-            android:id="@+id/job_date"/>
+            android:layout_marginTop="12dp"
+            android:text="Posted: 12 Oct 2024"
+            android:textSize="12sp"
+            android:textColor="#007E73" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:padding="10dp"
-            android:textColor="@android:color/black"
-            android:id="@+id/job_description"
-            android:maxLines="3"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Skills"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:padding="10dp"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:maxLines="1"
-            android:textColor="@android:color/black"
-            android:id="@+id/job_skills"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:text="Salary"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="@android:color/black"
-            android:padding="10dp"
             android:id="@+id/job_salary"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="$50k - $80k / year"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
 
-</androidx.cardview.widget.CardView>
+        <!-- THIS WAS MISSING BEFORE -->
+        <TextView
+            android:id="@+id/job_skills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Skills: Java, XML..."
+            android:textSize="13sp"
+            android:textStyle="italic"
+            android:textColor="@color/colorOnSurfaceVariant"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/job_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Description goes here..."
+            android:textColor="@color/colorOnSurfaceVariant" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="copper">#FFDFC714</color>
-    <color name="red">#FF601E17</color>
-
-    <color name="toolbar_color">#FFCCBF0F</color>
-
-    <color name="fabvolor">#FF44115B</color>
-
+    <color name="colorPrimary">#0077B5</color> <!-- LinkedIn Blue -->
+    <color name="colorPrimaryVariant">#005582</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    
+    <color name="colorSecondary">#3CAFA3</color>
+    <color name="colorSecondaryVariant">#007E73</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    
+    <color name="colorBackground">#F3F2EF</color> <!-- Light Grey Background -->
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#000000</color>
+    <color name="colorOnSurfaceVariant">#666666</color>
+    
+    <color name="colorError">#B00020</color>
+    
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey_light">#E0E0E0</color>
 </resources>

@@ -22,64 +22,61 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AllJobActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-
-    //Recycler
     private RecyclerView recyclerView;
 
-    //Firebase
-
+    // Firebase
     private DatabaseReference mAllJobPost;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_job);
 
+        // Toolbar Setup
         toolbar = findViewById(R.id.all_job_post);
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("All Jobs");
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
-        getSupportActionBar().setTitle("All Job Post");
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //Database
-
+        // Database Reference
         mAllJobPost = FirebaseDatabase.getInstance().getReference().child("Public database");
         mAllJobPost.keepSynced(true);
 
+        // RecyclerView Setup
         recyclerView = findViewById(R.id.recycler_all_job);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-
     }
 
-
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions<Data> firebaseRecyclerOptions =
-                new FirebaseRecyclerOptions.Builder<Data>()
-                        .setQuery(mAllJobPost, Data.class)
-                        .build();
+        FirebaseRecyclerOptions<Data> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<Data>()
+                .setQuery(mAllJobPost, Data.class)
+                .build();
 
-        FirebaseRecyclerAdapter<Data, AllJobPostViewHolder> adapter = new FirebaseRecyclerAdapter<Data, AllJobPostViewHolder>(firebaseRecyclerOptions) {
+        FirebaseRecyclerAdapter<Data, AllJobPostViewHolder> adapter = new FirebaseRecyclerAdapter<Data, AllJobPostViewHolder>(
+                firebaseRecyclerOptions) {
 
             @NonNull
             @Override
             public AllJobPostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.alljobpost,parent,false);
+                // CHANGED: Using the new 'job_post_item' layout we created earlier
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_post_item, parent, false);
                 return new AllJobPostViewHolder(view);
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull AllJobPostViewHolder viewHolder, int i, @NonNull final Data model) {
+            protected void onBindViewHolder(@NonNull AllJobPostViewHolder viewHolder, int i,
+                    @NonNull final Data model) {
 
                 viewHolder.setJobTitle(model.getTitle());
                 viewHolder.setJobDate(model.getDate());
@@ -90,68 +87,61 @@ public class AllJobActivity extends AppCompatActivity {
                 viewHolder.myview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         Intent intent = new Intent(getApplicationContext(), JobDetailsActivity.class);
 
-                        intent.putExtra("title",model.getTitle());
+                        intent.putExtra("id", model.getId());
+
+                        intent.putExtra("title", model.getTitle());
                         intent.putExtra("date", model.getDate());
-                        intent.putExtra("description",model.getDescription());
-                        intent.putExtra("skills",model.getSkills());
-                        intent.putExtra("salary",model.getSalary());
+                        intent.putExtra("description", model.getDescription());
+                        intent.putExtra("skills", model.getSkills());
+                        intent.putExtra("salary", model.getSalary());
 
                         startActivity(intent);
-
-
                     }
                 });
-
             }
-
-
         };
-
 
         adapter.startListening();
         recyclerView.setAdapter(adapter);
-
     }
 
-    public static class AllJobPostViewHolder extends RecyclerView.ViewHolder{
+    public static class AllJobPostViewHolder extends RecyclerView.ViewHolder {
 
         View myview;
 
         public AllJobPostViewHolder(@NonNull View itemView) {
             super(itemView);
-            myview=itemView;
+            myview = itemView;
         }
 
-        public void setJobTitle(String title){
-            TextView mTitle = myview.findViewById(R.id.all_job_post_title);
+        public void setJobTitle(String title) {
+            TextView mTitle = myview.findViewById(R.id.job_title);
             mTitle.setText(title);
         }
 
-        public void setJobDate(String date){
-            TextView mDate = myview.findViewById(R.id.all_job_post_date);
+        public void setJobDate(String date) {
+            TextView mDate = myview.findViewById(R.id.job_date);
             mDate.setText(date);
         }
 
-        public void setJobDescription(String description){
-            TextView mDescription = myview.findViewById(R.id.all_job_post_description);
+        public void setJobDescription(String description) {
+            TextView mDescription = myview.findViewById(R.id.job_description);
             mDescription.setText(description);
         }
 
-        public void setJobSkills(String skills){
-            TextView mSkills = myview.findViewById(R.id.all_job_post_skills);
-            mSkills.setText(skills);
+        public void setJobSkills(String skills) {
+
+            TextView mSkills = myview.findViewById(R.id.job_skills);
+            if (mSkills != null) {
+                mSkills.setText(skills);
+            }
         }
 
-        public void setJobSalary(String salary){
-            TextView mSalary = myview.findViewById(R.id.all_job_post_salary);
+        public void setJobSalary(String salary) {
+            TextView mSalary = myview.findViewById(R.id.job_salary);
             mSalary.setText(salary);
         }
-
-
     }
-
-
 }
